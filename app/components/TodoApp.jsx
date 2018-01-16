@@ -1,5 +1,6 @@
 const React = require('react')
 let TodoList = require('TodoList')
+let TodoForm = require('TodoForm')
 
 let TodoApp = React.createClass({
     getInitialState: function () {
@@ -24,11 +25,15 @@ let TodoApp = React.createClass({
             ]
         }
     },
+    handleAddToDo: function(text) {
+        alert('new todo: ' + text)
+    },
     render: function () {
         var { todos } = this.state
         return (
             <div>
                 <TodoList todos={todos}/>
+                <TodoForm onAddToDo={this.handleAddToDo}/>
             </div>
         )
     }
