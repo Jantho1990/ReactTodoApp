@@ -20,4 +20,14 @@ describe('TodoForm', () => {
         TestUtils.Simulate.submit($el[0])
         expect(spy).toHaveBeenCalledWith('test')
     })
+
+    it('should not call onAddTodo if no todo text entered', () => {
+        let spy = expect.createSpy()
+        let todoForm = TestUtils.renderIntoDocument(<TodoForm onAddToDo={spy}/>)
+        let $el = $(ReactDOM.findDOMNode(todoForm))
+
+        todoForm.refs.text.value = ''
+        TestUtils.Simulate.submit($el[0])
+        expect(spy).toNotHaveBeenCalled()
+    })
 })

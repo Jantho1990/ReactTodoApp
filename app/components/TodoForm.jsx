@@ -4,8 +4,13 @@ const TodoForm = React.createClass({
     onSubmit: function (e) {
         e.preventDefault()
         let text = this.refs.text.value
-        this.props.onAddToDo(text)
-        this.refs.text.value = ''
+        if(text.length > 0){
+            this.props.onAddToDo(text)
+        }else{
+            this.refs.text.focus()
+            alert('No empty Todos allowed!')
+        }
+        this.refs.text.value = ''        
     },
     render: function () {
         return (
