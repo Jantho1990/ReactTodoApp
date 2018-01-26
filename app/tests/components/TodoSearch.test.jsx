@@ -8,7 +8,7 @@ const TodoSearch = require('TodoSearch')
 
 describe('TodoSearch', () => {
     it('should exist', () => {
-        expect('TodoSearch').toExist()
+        expect(TodoSearch).toExist()
     })
 
     it('should call onSearch with entered input text', () => {

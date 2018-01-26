@@ -9,7 +9,7 @@ const ToDo = require('ToDo')
 
 describe('TodoList', () => {
     it('should exist', () => {
-        expect('TodoList').toExist()
+        expect(TodoList).toExist()
     })
 
     it('should render 1 ToDo component for each todo item', () => {

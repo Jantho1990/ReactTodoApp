@@ -8,7 +8,7 @@ const ToDo = require('ToDo')
 
 describe('ToDo', () => {
     it('should exist', () => {
-        expect('ToDo').toExist()
+        expect(ToDo).toExist()
     })
 
     it('should call onToggle prop with id on click', () => {

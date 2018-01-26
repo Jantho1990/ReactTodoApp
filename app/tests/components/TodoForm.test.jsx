@@ -8,7 +8,7 @@ const TodoForm = require('TodoForm')
 
 describe('TodoForm', () => {
     it('should exist', () => {
-        expect('TodoForm').toExist()
+        expect(TodoForm).toExist()
     })
 
     it('should call onAddTodo if todo text entered', () => {
