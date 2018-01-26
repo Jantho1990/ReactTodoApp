@@ -53,4 +53,34 @@ describe('ToDoAPI', () => {
             expect(todos).toEqual(actualTodos)
         })
     })
+
+    describe('filterTodos', () => {
+        let todos = [
+            {
+                id: 1,
+                text: 'test',
+                completed: false
+            },
+            {
+                id: 2,
+                text: 'ark',
+                completed: true
+            },
+            {
+                id: 3,
+                text: 'fumble',
+                completed: false
+            }
+        ]
+
+        it('should return all items if showCompleted is true', () => {
+            let filteredTodos = ToDoAPI.filterTodos(todos, true, '')
+            expect(filteredTodos.length).toBe(3)
+        })
+
+        it('should only return unfinished todos if showCompleted is false', () => {
+            let filteredTodos = ToDoAPI.filterTodos(todos, false, '')
+            expect(filteredTodos.length).toBe(2)
+        })
+    })
 })
