@@ -18,8 +18,12 @@ module.exports = {
         })
 
         // Filter by searchText
+        filteredTodos = filteredTodos.filter((todo) => {
+            return searchText.length === 0 || todo.text.toLowerCase().indexOf(searchText) > -1
+        })
 
         // Sort uncompleted todos first
+        filteredTodos.sort((todoA, todoB) => todoA.completed ? 1 : (todoB.completed ? -1 : 0))
 
 
         return filteredTodos

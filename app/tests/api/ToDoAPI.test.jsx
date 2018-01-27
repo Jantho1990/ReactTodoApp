@@ -68,7 +68,7 @@ describe('ToDoAPI', () => {
             },
             {
                 id: 3,
-                text: 'fumble',
+                text: 'Fumble',
                 completed: false
             }
         ]
@@ -81,6 +81,21 @@ describe('ToDoAPI', () => {
         it('should only return unfinished todos if showCompleted is false', () => {
             let filteredTodos = ToDoAPI.filterTodos(todos, false, '')
             expect(filteredTodos.length).toBe(2)
+        })
+
+        it('should sort by completed status', () => {
+            let filteredTodos = ToDoAPI.filterTodos(todos, true, '')
+            expect(filteredTodos[2].id).toEqual(2)
+        })
+
+        it('should return all todos if searchText is empty', () => {
+            let filteredTodos = ToDoAPI.filterTodos(todos, true, '')
+            expect(filteredTodos.length).toEqual(3)
+        })
+
+        it('should filter todos by searchText', () => {
+            let filteredTodos = ToDoAPI.filterTodos(todos, true, 'fum')
+            expect(filteredTodos[0].id).toEqual(3)
         })
     })
 })

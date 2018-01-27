@@ -44,7 +44,6 @@ let TodoApp = React.createClass({
     render: function () {
         let { todos, showCompleted, searchText } = this.state
         let filteredTodos = ToDoAPI.filterTodos(todos, showCompleted, searchText)
-        console.log(filteredTodos)
         return (
             <div>
                 <TodoSearch onSearch={this.handleSearch}/>
