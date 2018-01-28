@@ -19,13 +19,16 @@ describe('TodoApp', () => {
         todoApp.handleAddToDo(todoText)
 
         expect(todoApp.state.todos[0].text).toBe(todoText)
+        expect(todoApp.state.todos[0].createdAt).toBeA('number')
     })
 
     it('should toggle completed value when handleToggle called', () => {
         let todo = {
             id: 11,
             text: 'test features',
-            completed: false
+            completed: false,
+            createdAt: 0,
+            completedAt: undefined
         }
 
         let todoApp = TestUtils.renderIntoDocument(<TodoApp/>)
@@ -34,6 +37,7 @@ describe('TodoApp', () => {
         
         todoApp.handleToggle(todo.id)
         expect(todoApp.state.todos[0].completed).toBe(true)
+        expect(todoApp.state.todos[0].completedAt).toBeA('number')        
     })
 
     it('should clear todos when handleClearTodos is called', () => {
@@ -50,5 +54,23 @@ describe('TodoApp', () => {
 
         todoApp.handleClearTodos()
         expect(todoApp.state.todos.length).toEqual(0)
+    })
+
+    it('should toggle todo from completed to incomplete', () => {
+        let todo = {
+            id: 11,
+            text: 'test features',
+            completed: true,
+            createdAt: 0,
+            completedAt: 0
+        }
+        
+        let todoApp = TestUtils.renderIntoDocument(<TodoApp/>)
+        todoApp.setState({todos: [todo]})
+        expect(todoApp.state.todos[0].completed).toBe(true)
+
+        todoApp.handleToggle(todo.id)
+        expect(todoApp.state.todos[0].completed).toBe(false)
+        expect(todoApp.state.todos[0].completedAt).toNotExist()              
     })
 })

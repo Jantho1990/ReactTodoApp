@@ -6,6 +6,7 @@ let TodoClear = require('TodoClear')
 let ToDoAPI = require('ToDoAPI')
 
 let uuidv1 = require('uuid/v1')
+let moment = require('moment')
 
 let TodoApp = React.createClass({
     getInitialState: function () {
@@ -25,7 +26,9 @@ let TodoApp = React.createClass({
                 {
                     id: uuidv1(),
                     text,
-                    completed: false
+                    completed: false,
+                    createdAt: moment().unix(),
+                    completedAt: undefined
                 }
             ]
         })
@@ -44,7 +47,8 @@ let TodoApp = React.createClass({
     handleToggle: function (id) {
         this.setState((state) => {
             let todo = state.todos.find((todo) => todo.id === id)
-            todo.completed = !todo.completed            
+            todo.completed = !todo.completed
+            todo.completedAt = todo.completed ? moment().unix() : undefined
         })
     },
     render: function () {
