@@ -2,6 +2,7 @@ const React = require('react')
 let TodoList = require('TodoList')
 let TodoForm = require('TodoForm')
 let TodoSearch = require('TodoSearch')
+let TodoClear = require('TodoClear')
 let ToDoAPI = require('ToDoAPI')
 
 let uuidv1 = require('uuid/v1')
@@ -29,6 +30,11 @@ let TodoApp = React.createClass({
             ]
         })
     },
+    handleClearTodos: function () {
+        this.setState({
+            todos: []
+        })
+    },
     handleSearch: function (showCompleted, searchText) {
         this.setState({
             showCompleted,
@@ -49,6 +55,7 @@ let TodoApp = React.createClass({
                 <TodoSearch onSearch={this.handleSearch}/>
                 <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
                 <TodoForm onAddToDo={this.handleAddToDo}/>
+                <TodoClear onClearTodos={this.handleClearTodos}/>
             </div>
         )
     }

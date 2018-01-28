@@ -35,4 +35,20 @@ describe('TodoApp', () => {
         todoApp.handleToggle(todo.id)
         expect(todoApp.state.todos[0].completed).toBe(true)
     })
+
+    it('should clear todos when handleClearTodos is called', () => {
+        let todos = [
+            {
+                id: 1,
+                text: 'clear todos',
+                complete: false
+            }
+        ]
+        let todoApp = TestUtils.renderIntoDocument(<TodoApp/>)
+        todoApp.setState({todos})
+        expect(todoApp.state.todos.length).toEqual(1)
+
+        todoApp.handleClearTodos()
+        expect(todoApp.state.todos.length).toEqual(0)
+    })
 })
