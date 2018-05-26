@@ -21,10 +21,10 @@ let ToDo = React.createClass({
                 this.props.onToggle(id)
             }}>
                 <div>
-                    <input type="checkbox" checked={completed}/>
+                    <input type="checkbox" defaultChecked={completed}/>
                 </div>
                 <div className="todo__subtext">
-                    <span>&nbsp;{text}</span>
+                    <p>&nbsp;{text}</p>
                     <p><small>{renderDate()}</small></p>
                 </div>
             </div>
