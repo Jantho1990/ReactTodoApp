@@ -27,4 +27,52 @@ describe('Reducers', () => {
       expect(res).toBe(true)
     })
   })
+
+  describe('todosReducer', () => {
+    it('should add new todo', () => {
+      let action = {
+        type: 'ADD_TODO',
+        text: 'Write a test'
+      }
+
+      let res = reducers.todosReducer(df([]), df(action))
+
+      expect(res.length).toBe(1)
+      expect(res[0].text).toBe(action.text)
+    })
+
+    it('should toggle todo', () => {
+      let todos = [
+        {
+          id: 1,
+          text: 'Complete the challenge',
+          completed: false,
+          createdAt: 123,
+          completedAt: undefined
+        },
+        {
+          id: 2,
+          text: 'Eat fish',
+          completed: false,
+          createdAt: 124,
+          completedAt: undefined
+        }
+      ]
+      let action = {
+        type: 'TOGGLE_TODO',
+        id: 1
+      }
+
+      let res = reducers.todosReducer(df(todos), df(action))
+
+      // assert flipped
+      expect(res[0].completed).toBe(true)
+      expect(res[0].completedAt).toNotBe(undefined)
+
+      // flip it back
+      let res2 = reducers.todosReducer(df(res), df(action))
+      expect(res2[0].completed).toBe(false)
+      expect(res2[0].completedAt).toBe(undefined)
+    })
+  })
 })
