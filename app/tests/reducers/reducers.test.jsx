@@ -74,5 +74,20 @@ describe('Reducers', () => {
       expect(res2[0].completed).toBe(false)
       expect(res2[0].completedAt).toBe(undefined)
     })
+
+    it('should clear all todos', () => {
+      let todos = [
+        { 'id': 1, 'text': 'Burp', completed: false, completedAt: undefined, createdAt: 500 },
+        { 'id': 2, 'text': 'Belch', completed: false, completedAt: undefined, createdAt: 500 }
+      ]
+      let action = {
+        type: 'REMOVE_TODOS',
+        id: 1
+      }
+
+      let res = reducers.todosReducer(df(todos), df(action))
+
+      expect(res).toEqual([])
+    })
   })
 })

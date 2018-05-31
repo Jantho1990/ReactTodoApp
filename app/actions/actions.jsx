@@ -29,6 +29,6 @@ export let toggleTodo = (id) => {
 
 export let clearTodos = () => {
     return {
-        type: 'CLEAR_TODOS'
+        type: 'REMOVE_TODOS'
     }
 }

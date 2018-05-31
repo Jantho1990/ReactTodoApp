@@ -13,7 +13,7 @@ describe('TodoClear', () => {
 
     it('should dispatch CLEAR_TODOS if clear button is pressed', () => {
         let action = {
-            type: 'CLEAR_TODOS'
+            type: 'REMOVE_TODOS'
         }
         let spy = expect.createSpy()
         let todoClear = TestUtils.renderIntoDocument(<TodoClear dispatch={spy}/>)
