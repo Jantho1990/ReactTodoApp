@@ -1,11 +1,14 @@
 const React = require('react')
+let {connect} = require('react-redux'),
+    actions = require('actions')
 
-const TodoForm = React.createClass({
+export let TodoForm = React.createClass({
     onSubmit: function (e) {
         e.preventDefault()
+        let {dispatch} = this.props
         let text = this.refs.text.value
         if(text.length > 0){
-            this.props.onAddToDo(text)
+            dispatch(actions.addTodo(text))
         }else{
             this.refs.text.focus()
             alert('No empty Todos allowed!')
@@ -22,4 +25,4 @@ const TodoForm = React.createClass({
     }
 })
 
-module.exports = TodoForm
+export default connect()(TodoForm)

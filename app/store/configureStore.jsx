@@ -2,15 +2,14 @@ const redux = require('redux')
 
 let { searchTextReducer, showCompletedReducer, todosReducer } = require('reducers')
 
-export let configure = () => {
+export let configure = (initialState = {}) => {
   let reducer = redux.combineReducers({
     searchText: searchTextReducer,
     showCompleted: showCompletedReducer,
     todos: todosReducer
   })
-  console.log(reducer, searchTextReducer)
 
-  const store = redux.createStore(reducer, redux.compose(
+  const store = redux.createStore(reducer, initialState, redux.compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ))
 

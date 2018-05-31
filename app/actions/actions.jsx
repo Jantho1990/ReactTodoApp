@@ -26,3 +26,9 @@ export let toggleTodo = (id) => {
         id
     }
 }
+
+export let clearTodos = () => {
+    return {
+        type: 'CLEAR_TODOS'
+    }
+}

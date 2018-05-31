@@ -1,8 +1,12 @@
 const React = require('react')
+let { connect } = require('react-redux'),
+    actions = require('actions')
 
-let TodoClear = React.createClass({
-    onClick: function () {
-        this.props.onClearTodos()
+export let TodoClear = React.createClass({
+    onClick: function (e) {
+        e.preventDefault()
+        let { dispatch } = this.props
+        dispatch(actions.clearTodos())
     },
     render: function () {
         return (
@@ -13,4 +17,4 @@ let TodoClear = React.createClass({
     }
 })
 
-module.exports = TodoClear
+export default connect()(TodoClear)

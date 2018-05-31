@@ -4,14 +4,14 @@ const React = require('react'),
       $ = require('jquery'),
       TestUtils = require('react-addons-test-utils')
 
-const ToDo = require('ToDo')
+const {ToDo} = require('ToDo')
 
 describe('ToDo', () => {
     it('should exist', () => {
         expect(ToDo).toExist()
     })
 
-    it('should call onToggle prop with id on click', () => {
+    it('should dispatch TOGGLE_TODO action on click', () => {
         let todo = {
             id: 199,
             text: 'finish the fight',
@@ -19,11 +19,14 @@ describe('ToDo', () => {
         }
 
         let spy = expect.createSpy()
-        let todoEl = TestUtils.renderIntoDocument(<ToDo {...todo} onToggle={spy} />)
+        let todoEl = TestUtils.renderIntoDocument(<ToDo {...todo} dispatch={spy} />)
         let $el = $(ReactDOM.findDOMNode(todoEl))
 
         TestUtils.Simulate.click($el[0])
-        expect(spy).toHaveBeenCalledWith(todo.id)
+        expect(spy).toHaveBeenCalledWith({
+            type: 'TOGGLE_TODO',
+            id: todo.id
+        })
 
     })
 })

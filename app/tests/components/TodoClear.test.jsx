@@ -4,19 +4,22 @@ const React = require('react'),
       $ = require('jquery'),
       TestUtils = require('react-addons-test-utils')
 
-const TodoClear = require('TodoClear')
+const {TodoClear} = require('TodoClear')
 
 describe('TodoClear', () => {
     it('should exist', () => {
         expect(TodoClear).toExist()
     })
 
-    it('should call onClearTodos if clear button is pressed', () => {
+    it('should dispatch CLEAR_TODOS if clear button is pressed', () => {
+        let action = {
+            type: 'CLEAR_TODOS'
+        }
         let spy = expect.createSpy()
-        let todoClear = TestUtils.renderIntoDocument(<TodoClear onClearTodos={spy}/>)
+        let todoClear = TestUtils.renderIntoDocument(<TodoClear dispatch={spy}/>)
         let $el = $(ReactDOM.findDOMNode(todoClear))
 
         TestUtils.Simulate.click($el[0].querySelector('button'))
-        expect(spy).toHaveBeenCalled()
+        expect(spy).toHaveBeenCalledWith(action)
     })
 })
