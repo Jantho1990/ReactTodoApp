@@ -8,9 +8,18 @@ let TodoApp = require('TodoApp');
 let actions = require('actions'),
     store = require('configureStore').configure()
 
+let ToDoAPI = require('ToDoAPI')
+
 store.subscribe(() => {
+  let state = store.getState()
+  
   console.log('New state', store.getState())
+
+  ToDoAPI.setTodos(state.todos)
 })
+
+let initialTodos = ToDoAPI.getTodos()
+store.dispatch(actions.addTodos(initialTodos))
 
 // Load foundation
 // require('style!css!foundation-sites/dist/foundation.min.css');
