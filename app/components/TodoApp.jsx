@@ -1,7 +1,7 @@
 const React = require('react')
 import TodoList from 'TodoList'
 import TodoForm from 'TodoForm'
-let TodoSearch = require('TodoSearch')
+import TodoSearch from 'TodoSearch'
 import TodoClear from 'TodoClear'
 let ToDoAPI = require('ToDoAPI')
 
@@ -19,31 +19,6 @@ let TodoApp = React.createClass({
     componentDidUpdate: function () {
         ToDoAPI.setTodos(this.state.todos)
     },
-    handleAddToDo: function(text) {
-        this.setState({
-            todos: [
-                ...this.state.todos,
-                {
-                    id: uuidv1(),
-                    text,
-                    completed: false,
-                    createdAt: moment().unix(),
-                    completedAt: undefined
-                }
-            ]
-        })
-    },
-    handleClearTodos: function () {
-        this.setState({
-            todos: []
-        })
-    },
-    handleSearch: function (showCompleted, searchText) {
-        this.setState({
-            showCompleted,
-            searchText: searchText.toLowerCase()
-        })
-    },
     render: function () {
         let { todos, showCompleted, searchText } = this.state
         let filteredTodos = ToDoAPI.filterTodos(todos, showCompleted, searchText)
@@ -53,7 +28,7 @@ let TodoApp = React.createClass({
                 <div className="row">
                     <div className="column small-centered small-11 medium-6 large-5">
                         <div className="container">
-                            <TodoSearch onSearch={this.handleSearch}/>
+                            <TodoSearch/>
                             <TodoList/>
                             <div className="container__footer">
                                 <TodoForm/>
