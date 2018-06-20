@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
+require('dotenv').config()
+console.log(typeof process.env.FIREBASE_APIKEY)
 
 module.exports = {
   entry: [
@@ -14,6 +16,16 @@ module.exports = {
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'FIREBASE_APIKEY': JSON.stringify(process.env.FIREBASE_APIKEY),
+        'FIREBASE_AUTHDOMAIN': JSON.stringify(process.env.FIREBASE_AUTHDOMAIN),
+        'FIREBASE_DATABASEURL': JSON.stringify(process.env.FIREBASE_DATABASEURL),
+        'FIREBASE_PROJECTID': JSON.stringify(process.env.FIREBASE_PROJECTID),
+        'FIREBASE_STORAGEBUCKET': JSON.stringify(process.env.FIREBASE_STORAGEBUCKET),
+        'FIREBASE_MESSAGINGSENDERID': JSON.stringify(process.env.FIREBASE_MESSAGINGSENDERID)
+      }
     })
   ],
   output: {
