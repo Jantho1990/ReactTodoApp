@@ -8,7 +8,7 @@ export let TodoForm = React.createClass({
         let {dispatch} = this.props
         let text = this.refs.text.value
         if(text.length > 0){
-            dispatch(actions.addTodo(text))
+            dispatch(actions.startAddTodo(text))
         }else{
             this.refs.text.focus()
             alert('No empty Todos allowed!')
